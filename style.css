@@ -1,0 +1,28 @@
+.element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.element > i {
+    font-size: 2rem;
+}
+.caption {
+    font-size: 1.3rem;
+}
+
+.nav {
+    height: 5vh;
+}
+
+.heading {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.menu, .menu > .row {
+    height: 75vh;
+}
