@@ -1,15 +1,48 @@
+:root {
+    --bg-color-1: #064973;
+    --bg-color-2: #04738C;
+    --bg-color-3: #7EBF8E;
+    --bg-color-4: #E6F285;
+}
+
+a, a:hover {
+    color: black;
+    text-decoration: none;
+}
+
 .element {
     display: flex;
+    height: 100%;
+    max-width: 100%;
+    min-width: 40%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 5px solid var(--bg-color-1);
 }
 
-.element > i {
-    font-size: 2rem;
+#stopwatch {
+    border-color: var(--bg-color-1);
 }
+
+#timer {
+    border-color: var(--bg-color-2);
+}
+
+#emom {
+    border-color: solid var(--bg-color-3);
+}
+
+#ab {
+    border-color: var(--bg-color-4);
+}
+
+.element>i {
+    font-size: 3rem;
+}
+
 .caption {
-    font-size: 1.3rem;
+    font-size: 2rem;
 }
 
 .nav {
@@ -23,6 +56,6 @@
     align-items: center
 }
 
-.menu, .menu > .row {
-    height: 75vh;
+.menu>.row {
+    height: 35vh;
 }

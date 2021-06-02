@@ -24,23 +24,33 @@
         <h1>Timer App</h1>
     </div>
     <div class="container menu">
-        <div class="row justify-content-around">
-            <div class="col-md element border border-dark rounded m-2">
-                <i class="bi bi-stopwatch"></i>
-                <span class="caption">Stoppuhr</span>
-            </div>
-            <div class="col-md element border border-dark rounded m-2">
-                <i class="bi bi-alarm"></i>
-                <span class="caption">Timer</span>
-            </div>
-            <div class="col-md element border border-dark rounded m-2">
-                <i class="bi bi-arrow-clockwise"></i>
-                <span class="caption">EMOM</span>
-            </div>
-            <div class="col-md element border border-dark rounded m-2">
-                <i class="bi bi-arrow-repeat"></i>
-                <span class="caption">A/B</span>
-            </div>
+        <div class="row">
+            <a href="/stopwatch.html" class="col-md m-2">
+                <div class="element rounded" id="stopwatch">
+                    <i class="bi bi-stopwatch"></i>
+                    <span class="caption">Stoppuhr</span>
+                </div>
+            </a>
+            <a href="/timer.html" class="col-md m-2">
+                <div class="element rounded" id="timer">
+                    <i class="bi bi-alarm"></i>
+                    <span class="caption">Timer</span>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <a href="/emom.html" class="col-md m-2">
+                <div class="element rounded" id="emom">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    <span class="caption">EMOM</span>
+                </div>
+            </a>
+            <a href="/ab.html" class="col-md m-2">
+                <div class="element rounded" id="ab">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span class="caption">A/B</span>
+                </div>
+            </a>
         </div>
 
     </div>
