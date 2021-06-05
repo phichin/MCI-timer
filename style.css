@@ -8,17 +8,17 @@
 a, a:hover {
     color: black;
     text-decoration: none;
+    border-top: 2px solid transparent;
+    width: 70px;
 }
-
+a:hover {
+    border-top: 2px solid green; 
+}
 .element {
     display: flex;
-    height: 100%;
-    max-width: 100%;
-    min-width: 40%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 5px solid var(--bg-color-1);
 }
 
 #stopwatch {
@@ -38,15 +38,20 @@ a, a:hover {
 }
 
 .element>i {
-    font-size: 3rem;
+    font-size: auto;
 }
 
 .caption {
-    font-size: 2rem;
+    font-size: auto;
 }
 
-.nav {
-    height: 5vh;
+nav {
+    height: 10vh;
+    margin: auto;
+    max-width: 40rem
+}
+.content {
+    height: 70vh;
 }
 
 .heading {
@@ -54,8 +59,4 @@ a, a:hover {
     display: flex;
     justify-content: center;
     align-items: center
-}
-
-.menu>.row {
-    height: 35vh;
 }
