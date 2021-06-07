@@ -11,7 +11,7 @@ a, a:hover {
     border-top: 2px solid transparent;
     width: 70px;
 }
-a:hover {
+a:hover, a.active {
     border-top: 2px solid green; 
 }
 .element {
@@ -50,13 +50,20 @@ nav {
     margin: auto;
     max-width: 40rem
 }
-.content {
-    height: 70vh;
-}
 
 .heading {
     height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center
+}
+
+.tab-content {
+    height: 70vh;
+}
+
+
+object, .tab-pane {
+    height: 100%;
+    width: 100%;
 }
