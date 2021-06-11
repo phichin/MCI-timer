@@ -68,15 +68,16 @@ function pressTimer() {
     } else {
         if (paused) {
             paused = false;
+            startTimer();
         } else {
             paused = true;
+            clearInterval(timerInterval);
         }
     }
 }
 
 function startTimer() {
     timerInterval = setInterval(() => {
-        if (!paused) {
             timePassed = timePassed += 1;
             timeLeft = TIME_LIMIT - timePassed;
             document.getElementById("base-timer-label").innerHTML = formatTime(
@@ -88,7 +89,7 @@ function startTimer() {
             if (timeLeft === 0) {
                 onTimesUp();
             }
-        }
+        
     }, 1000);
 }
 
