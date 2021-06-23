@@ -26,10 +26,10 @@
             <object id="objectTimer" type="text/html" data="timer.html"> </object>
         </div>
         <div class="tab-pane fade" id="nav-enom" role="tabpanel" aria-labelledby="nav-enom-tab">
-            ENOM
+            <object id="objectTimer" type="text/html" data="emom.html"> </object>
         </div>
         <div class="tab-pane fade" id="nav-abinterval" role="tabpanel" aria-labelledby="nav-abinterval-tab">
-            <object data="ab.html" type="text/html"></object>
+            <object id="objectTimer" type="text/html" data="abTimer.html"> </object>
         </div>
     </div>
     <nav>

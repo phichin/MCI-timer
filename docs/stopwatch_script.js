@@ -14,11 +14,11 @@ let remainingPathColor = COLOR_CODES.alert.color;
 let paused = true;
 
 function stopwatchReset() {
+    paused = true;
     clearInterval(timerInterval);
-
     timePassed = 0
     document.getElementById("base-timer-label").innerHTML = "0:00:00";
-    paused = true;
+    $("#base-start-label").show();
     setPathColor();
 }
 
@@ -26,9 +26,11 @@ function pressTimer() {
         if (paused) {
             paused = false;
             startStopwatch()
+            $("#base-start-label").hide();
         } else {
             paused = true;
             clearInterval(timerInterval);
+            $("#base-start-label").show();
         }
     setPathColor();
 }

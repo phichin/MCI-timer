@@ -12,14 +12,15 @@ body {
     -webkit-tap-highlight-color: transparent;
   }
 
-  #app{
-    cursor: pointer;
+  button{
+    z-index:4;
   }
   
   .base-timer {
     position: relative;
     width: 300px;
     height: 300px;
+    cursor: pointer;
   }
   
   .base-timer__svg {
@@ -41,7 +42,7 @@ body {
     stroke-linecap: round;
     transform: rotate(90deg);
     transform-origin: center;
-    transition: 1s linear all;
+    transition: 0.2s linear all;
     fill-rule: nonzero;
     stroke: currentColor;
   }
@@ -57,11 +58,37 @@ body {
   .base-timer__path-remaining.red {
     color: red;
   }
+
+  .base-timer__path-remaining.blue {
+    color: rgb(14, 212, 247);
+  }
   
   .base-timer__label {
     position: absolute;
     width: 300px;
     height: 300px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+
+  #base-start-label {
+    position: absolute;
+    width: 300px;
+    height: 375px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  #base-round-label {
+    position: relative;
+    width: 300px;
+    height: 50px;
     top: 0;
     display: flex;
     align-items: center;

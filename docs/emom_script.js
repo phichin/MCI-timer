@@ -1,10 +1,9 @@
-// Credit: Mateusz Rybczonec
 
-//let TIME_LIMIT = prompt("Enter time in seconds:");
 let TIME_LIMIT = 1000;
 const FULL_DASH_ARRAY = 283;
 let WARNING_THRESHOLD = 1000;
 let ALERT_THRESHOLD = 500;
+let counter = 0;
 
 const COLOR_CODES = {
     info: {
@@ -23,55 +22,24 @@ const COLOR_CODES = {
     }
 };
 
-var alarmSound = document.getElementById("alarmSound");
+
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 let paused = false;
 let timerStarted = false;
-let timerDone = false;
-
-
-/*
-document.getElementById("app").innerHTML = `
-<div class="base-timer">
-  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path
-        id="base-timer-path-remaining"
-        stroke-dasharray="283"
-        class="base-timer__path-remaining ${remainingPathColor}"
-        d="
-          M 50, 50
-          m -45, 0
-          a 45,45 0 1,0 90,0
-          a 45,45 0 1,0 -90,0
-        "
-      ></path>
-    </g>
-  </svg>
-  <span id="base-timer-label" class="base-timer__label">
-  ${formatTime(timeLeft)}
-  </span>
-</div>
-`;
-*/
-
-//startTimer();
 
 $(function () {
-
     loadTimer(1500);
 });
 
-
-
 function timerReset() {
     clearInterval(timerInterval);
+    counter = 0;
     timerStarted = false;
     timeLeft = TIME_LIMIT;
+    $("#base-round-label").text(counter);
     timePassed = 0;
     // set color back to green
     document
@@ -103,22 +71,27 @@ function loadTimer(time) {
 }
 
 function onTimesUp() {
-    timerDone = true;
     clearInterval(timerInterval);
-    setCircleBack()
+    counter++;
+    $("#base-round-label").text(counter);
+    timePassed = 0;
+    // set color back to green
+    document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove("red");
+    document
+        .getElementById("base-timer-path-remaining")
+        .classList.add("green");
+    // play sound
     alarmSound.load();
     alarmSound.play();
+    // restart timer
+    startTimer();
 }
 
 function pressTimer() {
-    // check if timer is done
-    if (timerDone) {
-        timerDone = false;
-        alarmSound.pause();
-        timerReset();
-    }
     // check if timer has been started
-    else if (!timerStarted) {
+    if (!timerStarted) {
         timerStarted = true;
         paused = false;
         startTimer();
@@ -204,13 +177,6 @@ function setCircleDasharray() {
     const circleDasharray = `${(
         calculateTimeFraction() * FULL_DASH_ARRAY
     ).toFixed(0)} 283`;
-    document
-        .getElementById("base-timer-path-remaining")
-        .setAttribute("stroke-dasharray", circleDasharray);
-}
-
-function setCircleBack() {
-    const circleDasharray = `283`;
     document
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
