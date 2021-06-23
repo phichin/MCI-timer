@@ -39,8 +39,10 @@ $(function () {
 
 function timerReset() {
     clearInterval(timerInterval);
+    timerAActive = true;
     timerStarted = false;
-    timeLeft = TIME_LIMIT;
+    timeLeft = timerA;
+    TIME_LIMIT = timerA;
     $("#base-round-label").text("A");
     timePassed = 0;
     // set color back to green
