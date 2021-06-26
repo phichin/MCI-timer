@@ -1,49 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer</title>
-    <link rel="stylesheet" href="timer_style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+	<!-- skeleton stylesheet-->
+	<link rel="stylesheet" href="base-timer/timer_style.css">
+	<link rel="stylesheet" href="timepicker/timepicker_style.css" />
+	
+    
+	<title>Timer</title>
    
     
 </head>
 <body>
+	<div class="container">
+		<div class="d-flex align-items-center justify-content-around flex-column mycontainer">
+			<div class="p-2">
+				<h1 class="timerTitle">A/B Interval</h1>
+			</div>
+			
+				
+			
+			<!-- Time Picker-->
+			<div id="time-picker">
+				<div>
+					<Button id="button-back" class="btn btn-danger" onclick="pressBack()">Zurück</Button>
+				</div>
+				<div class="d-flex align-items-center flex-column">
+					<div class="p-2">
+						<h3 id="setting-state-label" class="timerTitle">A</h2>
+					</div>
+					<div class="time-picker" data-time="00:00:00">
+						<div class="hour">
+							<div id="hr-up" class="hr-up"></div>
+							<input type="number" class="hr" value="00" />
+							<div class="hr-down"></div>
+						</div>
+						<div class="separator">:</div>
 
-    <div class="base-timer" hidden onclick="pressTimer()">
-        <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <g class="base-timer__circle">
-            <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-            <path
-              id="base-timer-path-remaining"
-              stroke-dasharray="283"
-              class="base-timer__path-remaining blue"
-              d="
-                M 50, 50
-                m -45, 0
-                a 45,45 0 1,0 90,0
-                a 45,45 0 1,0 -90,0
-              "
-            ></path>
-          </g>
-        </svg>
-        <span id="base-timer-label" class="base-timer__label">00</span>
+						<div class="minute">
+							<div class="min-up"></div>
+							<input type="number" class="min" value="00" />
+							<div class="min-down"></div>
+						</div>
 
-        <span id="base-start-label">Press to Start!</span>
-        <span id="base-round-label">A</span>
-      </div>
+						<div class="separator">:</div>
 
-      <br><br><br>
-    <button type="button" onclick="timerReset()">Reset</button>
+						<div class="second">
+							<div class="sec-up"></div>
+							<input type="number" class="sec" value="00">
+							<div class="sec-down"></div>
+						</div>
+					</div>
+					<div>
+						<Button class="btn btn-success startButton" onclick="pressStart()">Start</Button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- A/B Timer -->
+			<div id="base-timer">
+				<div>
+					<Button id="button-back" class="btn btn-danger" onclick="pressBack()">Zurück</Button>
+				</div>
+				
+				<div  class="base-timer" onclick="pressTimer()">
+					<svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+					  <g class="base-timer__circle">
+						<circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+						<path
+						  id="base-timer-path-remaining"
+						  stroke-dasharray="283"
+						  class="base-timer__path-remaining blue"
+						  d="
+							M 50, 50
+							m -45, 0
+							a 45,45 0 1,0 90,0
+							a 45,45 0 1,0 -90,0
+						  "
+						></path>
+					  </g>
+					</svg>
+					<span id="base-timer-label" class="base-timer__label">00</span>
 
-    <audio id="alarmSound">
+					<span id="base-start-label">Press to Start!</span>
+					<span id="base-round-label">0</span>
+				</div>
+			</div>
+			
+			
+			<div class="p-2">
+				<h2 class="timerRounds"> </h2>
+			</div>
+			<div class="p-2">
+				<button class="btn btn-info" onClick="clickReset()">Reset</Button>
+			</div>
+		</div>
+	</div>
+	
+	<audio id="alarmSound" loop>
       <source src="ding.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
-
-
+	
+	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="abTimer_script.js"></script>
+    <script src="base-timer/abTimer_script.js"></script>
+	<script src="timepicker/timepicker_script.js"></script>
+	<script src="abTimer_settings_script.js"></script>
+	
+	 <!--jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>
