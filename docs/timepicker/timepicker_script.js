@@ -109,7 +109,10 @@ function minute_down() {
 	minute--;
 	if (minute < 0) {
 		minute = 59;
-		hour--;
+		if(hour > 0)
+		{
+			hour--;	
+		}
 	}
 	setTime();
 }
@@ -119,6 +122,11 @@ function second_up () {
 	if (second > 59) {
 		second = 0;
 		minute++;
+		if(minute > 59)
+		{
+			minute = 0;
+			hour++;
+		}
 	}
 	setTime();
 }
@@ -126,7 +134,14 @@ function second_down() {
 	second--;
 	if (second < 0) {
 		second = 59;
-		minute--;
+		if(minute > 0)
+		{
+			minute--;
+		}else if(hour > 0)
+		{
+			hour--;
+			minute = 59;
+		}
 	}
 	setTime();
 }
