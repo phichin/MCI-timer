@@ -162,7 +162,9 @@ function runTimer() {
 
 function formatTime(time) {
     time = time + 99;
-    const minutes = Math.floor(time / 6000);
+    let minutes = Math.floor(time / 6000);
+	const hours = Math.floor(minutes /60);
+	minutes = minutes % 60;
     let seconds = parseInt((time / 100) % 60);
     let hunreth = time % 100;
 
@@ -173,7 +175,16 @@ function formatTime(time) {
         hunreth = `0${hunreth}`;
     }
 
-    return `${minutes}:${seconds}`;
+   if(hours <= 0)
+	{
+		return `${minutes}:${seconds}`;
+	}else{
+		if(minutes < 10)
+		{
+			minutes = `0${minutes}`;
+		}
+		return `${hours}:${minutes}:${seconds}`;
+	}
 }
 
 function setRemainingPathColor(timeLeft) {

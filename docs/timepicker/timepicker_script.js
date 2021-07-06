@@ -43,6 +43,8 @@ function hour_change (e) {
 
 	if (e.target.value == "") {
 		e.target.value = timePickerFormatTime(hour);
+	}else{
+		e.target.value = timePickerFormatTime(e.target.value);
 	}
 
 	hour = e.target.value;
@@ -58,12 +60,15 @@ function minute_change (e) {
 
 	if (e.target.value == "") {
 		e.target.value = timePickerFormatTime(minute);
+	}else{
+		e.target.value = timePickerFormatTime(e.target.value);
 	}
 
 	minute = e.target.value;
 }
 
 function second_change (e) {
+	console.log(e.target.value);
 	if (e.target.value > 59) {
 		e.target.value = 59;
 	} else if (e.target.value < 0) {
@@ -72,10 +77,12 @@ function second_change (e) {
 
 	if (e.target.value == "") {
 		e.target.value = timePickerFormatTime(second);
+	}else{
+		e.target.value = timePickerFormatTime(e.target.value);
 	}
-
 	second = e.target.value;
 }
+
 
 function hour_up() {
 	hour++;
@@ -134,6 +141,10 @@ function setTime () {
 function timePickerFormatTime (time) {
 	if (time < 10) {
 		time = '0' + time;
+	}
+	if(time.length > 2)
+	{
+		time = time.substring(time.length-2,time.length);
 	}
 	return time;
 }

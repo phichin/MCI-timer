@@ -21,6 +21,7 @@ function openTimer()
 	var newTime = formatTimeBack(hour,minute,second)*100;
 	if(newTime > 0)
 	{
+		console.log(hour+ ":"+minute+":"+second+" " + newTime)
 		$("#time-picker").hide();
 		$("#base-timer").show();
 		loadTimer(newTime);
@@ -57,5 +58,8 @@ function clickReset(){
 }
 
 function formatTimeBack(hr, min, sec) {
-    return sec + min*60 + hr *60*60;
+    var h = parseInt(hr);
+	var m = parseInt(min);
+	var s = parseInt(sec);
+	return s + m*60 + h *60*60;
 }
