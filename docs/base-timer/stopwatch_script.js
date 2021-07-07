@@ -8,6 +8,7 @@ const COLOR_CODES = {
     }
 };
 
+let currentRound = 0;
 let timePassed = 0;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.alert.color;
@@ -20,6 +21,13 @@ function stopwatchReset() {
     document.getElementById("base-timer-label").innerHTML = "0:00:00";
     $("#base-start-label").show();
     setPathColor();
+    currentRound = 0;
+    document.getElementById("timerRounds").innerHTML = "0";
+}
+
+function addRound(){
+    currentRound++;
+    document.getElementById("timerRounds").innerHTML = currentRound;
 }
 
 function pressTimer() {

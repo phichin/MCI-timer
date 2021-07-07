@@ -31,6 +31,7 @@ let remainingPathColor = COLOR_CODES.info.color;
 let paused = false;
 let timerStarted = false;
 let timerDone = false;
+let currentRound = 0;
 
 
 /*
@@ -88,6 +89,15 @@ function timerReset() {
     // reset ring
     setCircleDasharray();
 
+    //reset round
+    currentRound = 0;
+    document.getElementById("timerRounds").innerHTML = "0";
+
+}
+
+function addRound(){
+    currentRound++;
+    document.getElementById("timerRounds").innerHTML = currentRound;
 }
 
 function loadTimer(time) {
