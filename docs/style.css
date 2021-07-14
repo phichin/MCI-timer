@@ -11,9 +11,11 @@ a, a:hover {
     border-top: 2px solid transparent;
     width: 70px;
 }
+
 a:hover, a.active {
-    border-top: 2px solid green; 
+    border-top: 2px solid green;
 }
+
 .element {
     display: flex;
     flex-direction: column;
@@ -48,7 +50,8 @@ a:hover, a.active {
 nav {
     height: 10vh;
     margin: auto;
-    max-width: 40rem
+    max-width: 40rem;
+    grid-area: nav;
 }
 
 .heading {
@@ -60,10 +63,46 @@ nav {
 
 .tab-content {
     height: 90vh;
+    grid-area: content;
 }
 
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
 
 object, .tab-pane {
     height: 100%;
     width: 100%;
 }
+
+@media (min-width: 1024px) {
+    body {
+        display: grid;
+        grid-template-areas: "nav content";
+        grid-template-columns: 1fr 3fr;
+    }
+    nav, nav>.nav {
+        height: 40vh;
+    }
+    nav>.nav {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+  }
