@@ -1,5 +1,6 @@
 var settingsButton = document.getElementById("settingsButton");
 $("#base-timer").hide();
+$("#rounds").hide();
 					
 
 var showSettings = true;
@@ -21,8 +22,10 @@ function openTimer()
 	var newTime = formatTimeBack(hour,minute,second)*100;
 	if(newTime > 0)
 	{
+		//console.log(hour+ ":"+minute+":"+second+" " + newTime)
 		$("#time-picker").hide();
 		$("#base-timer").show();
+		$("#rounds").show();
 		loadTimer(newTime);
 		pressTimer();
 		showSettings = false;
@@ -34,6 +37,7 @@ function openTimer()
 function openSettings()
 {
 	$("#base-timer").hide();
+	$("#rounds").hide();
 	$("#time-picker").show();
 	timerReset();
 	showSettings = true;
@@ -57,5 +61,8 @@ function clickReset(){
 }
 
 function formatTimeBack(hr, min, sec) {
-    return sec + min*60 + hr *60*60;
+    var h = parseInt(hr);
+	var m = parseInt(min);
+	var s = parseInt(sec);
+	return s + m*60 + h *60*60;
 }
