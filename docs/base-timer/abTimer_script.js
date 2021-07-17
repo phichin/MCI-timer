@@ -5,7 +5,7 @@ let TIME_LIMIT = 1000;
 const FULL_DASH_ARRAY = 283;
 let WARNING_THRESHOLD = 1000;
 let ALERT_THRESHOLD = 500;
-let counter = 0;
+let counter = 1;
 
 const COLOR_CODES = {
     info: {
@@ -24,7 +24,8 @@ const COLOR_CODES = {
     }
 };
 
-
+var alarmSound = document.getElementById("alarmSound");
+var roundSound = document.getElementById("roundSound");
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
@@ -32,6 +33,7 @@ let remainingPathColor = COLOR_CODES.info.color;
 let paused = false;
 let timerStarted = false;
 let timerAActive = true;
+let timerDone = false;
 
 $(function () {
     loadTimer(1500, 1000);
@@ -39,6 +41,8 @@ $(function () {
 
 function timerReset() {
     clearInterval(timerInterval);
+    counter = 1;
+    $("#base-round-counter").text(counter + "/" + round);
     timerAActive = true;
     timerStarted = false;
     timeLeft = timerA;
@@ -73,45 +77,69 @@ function loadTimer(timeA, timeB) {
     WARNING_THRESHOLD = TIME_LIMIT / 2;
     ALERT_THRESHOLD = TIME_LIMIT / 4;
     document.getElementById("base-timer-label").innerHTML = formatTime(TIME_LIMIT);
+    $("#base-round-counter").text(counter + "/" + round);
     $(".base-timer").show();
 }
 
 function onTimesUp() {
     clearInterval(timerInterval);
 
-    // Swap timers
-    if (timerAActive) {
-        $("#base-round-label").text("B");
-        TIME_LIMIT = timerB;
-    } else {
-        $("#base-round-label").text("A");
-        TIME_LIMIT = timerA;
+    // Advance Timer only if B was Active
+    if (!timerAActive) {
+        counter++;
     }
-    timerAActive = !timerAActive;
 
-    WARNING_THRESHOLD = TIME_LIMIT / 2;
-    ALERT_THRESHOLD = TIME_LIMIT / 4;
-    document.getElementById("base-timer-label").innerHTML = formatTime(TIME_LIMIT);
+    // Check rounds
+    if (counter > round) {
+        // Stop Timer, Ring Final Alarm
+        timerDone = true;
+        alarmSound.load();
+        alarmSound.play();
+
+    } else {
+        // restart next round 
+        $("#base-round-counter").text(counter + "/" + round);
+
+        // Swap timers
+        if (timerAActive) {
+            $("#base-round-label").text("B");
+            TIME_LIMIT = timerB;
+        } else {
+            $("#base-round-label").text("A");
+            TIME_LIMIT = timerA;
+        }
+        timerAActive = !timerAActive;
+
+        WARNING_THRESHOLD = TIME_LIMIT / 2;
+        ALERT_THRESHOLD = TIME_LIMIT / 4;
+        document.getElementById("base-timer-label").innerHTML = formatTime(TIME_LIMIT);
 
 
-    timePassed = 0;
-    // set color back to green
-    document
-        .getElementById("base-timer-path-remaining")
-        .classList.remove("red");
-    document
-        .getElementById("base-timer-path-remaining")
-        .classList.add("green");
-    // play sound
-    alarmSound.load();
-    alarmSound.play();
-    // restart timer
-    startTimer();
+        timePassed = 0;
+        // set color back to green
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove("red");
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.add("green");
+        // play sound
+        roundSound.load();
+        roundSound.play();
+        // restart timer
+        startTimer();
+    }
 }
 
 function pressTimer() {
+    // check if timer is done
+    if (timerDone) {
+        timerDone = false;
+        alarmSound.pause();
+        timerReset();
+    }
     // check if timer has been started
-    if (!timerStarted) {
+    else if (!timerStarted) {
         startTimer();
 
     } else {
@@ -128,16 +156,16 @@ function pressTimer() {
 }
 
 function startTimer() {
-	timerStarted = true;
-	paused = false;
-	runTimer();
-	$("#base-start-label").hide();
-	document
-		.getElementById("base-timer-path-remaining")
-		.classList.remove("blue");
-	document
-		.getElementById("base-timer-path-remaining")
-		.classList.add("green");
+    timerStarted = true;
+    paused = false;
+    runTimer();
+    $("#base-start-label").hide();
+    document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove("blue");
+    document
+        .getElementById("base-timer-path-remaining")
+        .classList.add("green");
 }
 
 function runTimer() {

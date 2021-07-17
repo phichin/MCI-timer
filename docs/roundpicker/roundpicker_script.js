@@ -15,7 +15,11 @@ let round = 1;
 rnd_up.addEventListener('click', round_up);
 rnd_down.addEventListener('click', round_down);
 
-round_element.addEventListener('change', hour_change);
+round_element.addEventListener('change', round_change);
+
+function round_change (e) {
+	round = e.target.value;
+}
 
 
 function round_up() {

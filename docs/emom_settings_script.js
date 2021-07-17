@@ -19,6 +19,9 @@ function setRounds() {
 }
 
 function pressBack() {
+	timerDone = false;
+	alarmSound.pause();
+	timerReset();
 	openSettings();
 }
 
