@@ -3,7 +3,7 @@ let TIME_LIMIT = 1000;
 const FULL_DASH_ARRAY = 283;
 let WARNING_THRESHOLD = 1000;
 let ALERT_THRESHOLD = 500;
-let counter = 0;
+let counter = 1;
 
 const COLOR_CODES = {
     info: {
@@ -22,21 +22,23 @@ const COLOR_CODES = {
     }
 };
 
-
+var alarmSound = document.getElementById("alarmSound");
+var roundSound = document.getElementById("roundSound");
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 let paused = false;
 let timerStarted = false;
+let timerDone = false;
 
 
 function timerReset() {
     clearInterval(timerInterval);
-    counter = 0;
+    counter = 1;
     timerStarted = false;
     timeLeft = TIME_LIMIT;
-    $("#base-round-label").text(counter);
+    $("#base-round-label").text(counter + "/" + round);
     timePassed = 0;
     // set color back to green
     document
@@ -64,32 +66,50 @@ function loadTimer(time) {
     WARNING_THRESHOLD = time / 2;
     ALERT_THRESHOLD = time / 4;
     document.getElementById("base-timer-label").innerHTML = formatTime(time);
+    $("#base-round-label").text(counter + "/" + round);
     $(".base-timer").show();
 }
 
 function onTimesUp() {
     clearInterval(timerInterval);
     counter++;
-    $("#base-round-label").text(counter);
-    timePassed = 0;
-    // set color back to green
-    document
-        .getElementById("base-timer-path-remaining")
-        .classList.remove("red");
-    document
-        .getElementById("base-timer-path-remaining")
-        .classList.add("green");
-    // play sound
-    alarmSound.load();
-    alarmSound.play();
-    // restart timer
-    runTimer();
+    // Check rounds
+    if (counter > round) {
+        // Stop Timer, Ring Final Alarm
+        timerDone = true;
+        alarmSound.load();
+        alarmSound.play();
+
+    } else {
+        // restart next round 
+
+        $("#base-round-label").text(counter + "/" + round);
+        timePassed = 0;
+        // set color back to green
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove("red");
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.add("green");
+        // play sound
+        roundSound.load();
+        roundSound.play();
+        // restart timer
+        runTimer();
+    }
 }
 
 function pressTimer() {
+    // check if timer is done
+    if (timerDone) {
+        timerDone = false;
+        alarmSound.pause();
+        timerReset();
+    }
     // check if timer has been started
-    if (!timerStarted) {
-		startTimer();
+    else if (!timerStarted) {
+        startTimer();
 
     } else {
         if (paused) {
@@ -104,17 +124,17 @@ function pressTimer() {
     }
 }
 
-function startTimer(){
-	timerStarted = true;
-	paused = false;
-	runTimer();
-	$("#base-start-label").hide();
-	document
-		.getElementById("base-timer-path-remaining")
-		.classList.remove("blue");
-	document
-		.getElementById("base-timer-path-remaining")
-		.classList.add("green");
+function startTimer() {
+    timerStarted = true;
+    paused = false;
+    runTimer();
+    $("#base-start-label").hide();
+    document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove("blue");
+    document
+        .getElementById("base-timer-path-remaining")
+        .classList.add("green");
 }
 
 function runTimer() {

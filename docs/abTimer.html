@@ -12,6 +12,7 @@
 	<!-- skeleton stylesheet-->
 	<link rel="stylesheet" href="base-timer/timer_style.css">
 	<link rel="stylesheet" href="timepicker/timepicker_style.css" />
+	<link rel="stylesheet" href="roundpicker/roundpicker_style.css" />
 	
     
 	<title>Timer</title>
@@ -32,7 +33,7 @@
 			</div>
 			<div class="time-picker-div">
 				<div class="p-2">
-					<h3 id="setting-state-label" class="timerTitle">A</h2>
+					<h3 id="setting-state-label" class="statusTitle">A</h2>
 				</div>
 				<div class="time-picker" data-time="00:00:00">
 					<div class="hour">
@@ -62,6 +63,31 @@
 			</div>
 		</div>
 		
+		<!-- Round Picker-->
+		<div id="round-picker">
+			<div>
+				<Button id="button-back" class="btn btn-danger" onclick="pressBack()">Zurück</Button>
+			</div>
+			<div class="d-flex align-items-center flex-column">
+
+				<div class="p-2">
+					<h3  class="statusTitle">Runden</h2>
+				</div>
+			
+				<div class="round-picker" data-time="0">
+						
+					<div class="round">
+						<div class="round-up"></div>
+						<input type="number" class="rnd" value="1">
+						<div class="round-down"></div>
+					</div>
+				</div>
+				<div>
+					<Button class="btn btn-success startButton" onclick="pressStart()">Start</Button>
+				</div>
+			</div>
+		</div>
+			
 		<!-- A/B Timer -->
 		<div id="base-timer" class="base-timer-div">
 			<div>
@@ -89,6 +115,7 @@
 
 				<span id="base-start-label">Press to Start!</span>
 				<span id="base-round-label">A</span>
+				<span id="base-round-counter">0/1</span>
 			</div>
 		</div>
 		
@@ -101,15 +128,21 @@
 		</div>
 	</div>
 	
-	<audio id="alarmSound">
-      <source src="ding.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+	<audio id="roundSound">
+		<source src="ding.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	  </audio>
+  
+	  <audio id="alarmSound" loop>
+		  <source src="alarm.mp3" type="audio/mpeg">
+		  Your browser does not support the audio element.
+		</audio>
 	
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="base-timer/abTimer_script.js"></script>
 	<script src="timepicker/timepicker_script.js"></script>
+	<script src="roundpicker/roundpicker_script.js"></script>
 	<script src="abTimer_settings_script.js"></script>
 	
 	 <!--jQuery first, then Popper.js, then Bootstrap JS -->
