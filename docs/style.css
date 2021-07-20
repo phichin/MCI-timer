@@ -1,3 +1,5 @@
+
+
 :root {
     --bg-color-1: #064973;
     --bg-color-2: #04738C;
@@ -12,9 +14,7 @@ a, a:hover {
     width: 70px;
 }
 
-a:hover, a.active {
-    border-top: 2px solid green;
-}
+
 
 .element {
     display: flex;
@@ -47,7 +47,7 @@ a:hover, a.active {
     font-size: auto;
 }
 
-nav {
+/*nav {
     height: 10vh;
     margin: auto;
     max-width: 40rem;
@@ -59,12 +59,9 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center
-}
+}*/
 
-.tab-content {
-    height: 90vh;
-    grid-area: content;
-}
+
 
 input[type="number"] {
     -moz-appearance: textfield;
@@ -82,7 +79,7 @@ object, .tab-pane {
     width: 100%;
 }
 
-@media (min-width: 1024px) {
+/*@media (min-width: 1024px) {
     body {
         display: grid;
         grid-template-areas: "nav content";
@@ -95,7 +92,64 @@ object, .tab-pane {
         display: flex;
         flex-direction: column;
     }
+}*/
+
+/* Hochkantformat*/
+@media (min-height: 600px) {
+    
+	
+    .navbar-div {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
+	
+	.nav-div {
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		height: 100vh;
+		/*
+		align-items: center;*/
+	}
+	
+	.tab-content{
+		height: 100%;
+	}
+	
+	a:hover, a.active {
+		border-top: 2px solid green;
+	}
 }
+
+/*Querformat*/
+@media (max-height: 599px) {
+	body {
+		width: 100%;
+	}
+	.navbar-div {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+
+	.tab-content{
+		width:100%;
+		height: 100vh;
+	}
+
+	.nav-div {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	
+	a:hover, a.active {
+		border-right: 2px solid green;
+	}
+}
+
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

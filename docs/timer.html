@@ -20,7 +20,6 @@
 </head>
 <body>
 	<div class="container">
-		<div class="d-flex align-items-center justify-content-around flex-column mycontainer">
 			<div class="p-2">
 				<h1 class="timerTitle">Timer</h1>
 			</div>
@@ -28,7 +27,7 @@
 			
 			<!-- Time Picker-->
 			<div id="time-picker">
-				<div class="d-flex align-items-center flex-column">
+				<div class="time-picker-div">
 					
 					<div class="time-picker" data-time="00:00:00">
 						<div class="hour">
@@ -59,7 +58,7 @@
 			</div>
 			
 			<!--Timer -->
-			<div id="base-timer">
+			<div id="base-timer" class="base-timer-div">
 				<div>
 					<Button class="btn btn-danger" onclick="pressBack()">Zurück</Button>
 				</div>
@@ -95,7 +94,6 @@
 				<button class="btn btn-info" onClick="clickReset()">Reset</Button>
 			</div>
 		</div>
-	</div>
 	
 	<audio id="alarmSound" loop>
       <source src="alarm.mp3" type="audio/mpeg">
