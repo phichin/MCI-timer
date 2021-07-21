@@ -38,7 +38,7 @@ function timerReset() {
     counter = 1;
     timerStarted = false;
     timeLeft = TIME_LIMIT;
-    $("#base-round-label").text(counter + "/" + round);
+    $("#base-round-counter").text(counter + "/" + round);
     timePassed = 0;
     // set color back to green
     document
@@ -66,7 +66,7 @@ function loadTimer(time) {
     WARNING_THRESHOLD = time / 2;
     ALERT_THRESHOLD = time / 4;
     document.getElementById("base-timer-label").innerHTML = formatTime(time);
-    $("#base-round-label").text(counter + "/" + round);
+    $("#base-round-counter").text(counter + "/" + round);
     $(".base-timer").show();
 }
 
@@ -83,7 +83,7 @@ function onTimesUp() {
     } else {
         // restart next round 
 
-        $("#base-round-label").text(counter + "/" + round);
+        $("#base-round-counter").text(counter + "/" + round);
         timePassed = 0;
         // set color back to green
         document
