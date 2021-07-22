@@ -97,12 +97,13 @@ object, .tab-pane {
 /* Hochkantformat*/
 @media (min-height: 600px) {
     
-	
-    .navbar-div {
+	.navbar-div {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
+		/*max-width: 1000px;*/
 	}
+    
 	
 	.nav-div {
 		display: flex;
