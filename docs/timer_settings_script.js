@@ -2,13 +2,14 @@ var settingsButton = document.getElementById("settingsButton");
 $("#base-timer").hide();
 $("#rounds").hide();
 					
-
+console.log("test");
 var showSettings = true;
 //divContent.innerHTML = timepickerHTML;
 
 function pressStart()
 {
 	openTimer();
+	
 }
 
 function pressBack()
@@ -20,6 +21,7 @@ function pressBack()
 function openTimer()
 {
 	var newTime = formatTimeBack(hour,minute,second)*100;
+	console.log(hour+ ":"+minute+":"+second+" " + newTime);
 	if(newTime > 0)
 	{
 		//console.log(hour+ ":"+minute+":"+second+" " + newTime)

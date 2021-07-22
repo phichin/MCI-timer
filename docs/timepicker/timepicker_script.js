@@ -81,6 +81,7 @@ function second_change (e) {
 		e.target.value = timePickerFormatTime(e.target.value);
 	}
 	second = e.target.value;
+	console.log(second);
 }
 
 
