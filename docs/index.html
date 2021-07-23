@@ -99,6 +99,13 @@
             // remove navbar on mobile
             window.scrollTo(0,1);
         })
+		
+		// Scroll always to the bottom
+		scrollingElement = (document.scrollingElement || document.body)
+		function scrollToBottom () {
+			scrollingElement.scrollTop = scrollingElement.scrollHeight;
+		}
+		document.addEventListener('scroll',scrollToBottom);
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
