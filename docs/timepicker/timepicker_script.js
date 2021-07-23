@@ -36,6 +36,25 @@ hr_element.addEventListener('change', hour_change);
 min_element.addEventListener('change', minute_change);
 sec_element.addEventListener('change', second_change);
 
+hr_element.addEventListener('focusin', fokusIn);
+hr_element.addEventListener('focusout',fokusOut );
+min_element.addEventListener('focusin', fokusIn);
+min_element.addEventListener('focusout',fokusOut );
+sec_element.addEventListener('focusin', fokusIn);
+sec_element.addEventListener('focusout',fokusOut );
+
+function fokusIn(e) {
+	if(e.target.value.localeCompare("00") == 0){
+		e.target.value = "";
+	}
+}
+
+function fokusOut(e) {
+	if(e.target.value.localeCompare("") == 0){
+		e.target.value = "00";
+	}
+}
+
 function hour_change (e) {
 	if (e.target.value < 0) {
 		e.target.value = '00';

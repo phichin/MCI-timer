@@ -2,7 +2,7 @@ var settingsButton = document.getElementById("settingsButton");
 $("#base-timer").hide();
 $("#rounds").hide();
 					
-console.log("test");
+
 var showSettings = true;
 //divContent.innerHTML = timepickerHTML;
 
